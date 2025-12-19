@@ -12,6 +12,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
+    .filter-btn{
+      background:#111;
+      color:#fff;
+      border:none;
+      padding:10px 20px;
+      margin:5px;
+      border-radius:20px;
+      cursor:pointer;
+      font-weight:500;
+    }
+    .filter-btn.active, .filter-btn:hover{background:#d4af37;color:#111}
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Poppins', sans-serif;
@@ -100,14 +112,23 @@
     }
     .product-info h4 { font-size: 1.1rem; margin-bottom: 8px; }
     .price { color: #d4af37; font-weight: 600; margin-bottom: 15px; }
-    .product-info button {
-      background: #111;
-      color: #fff;
-      border: none;
-      padding: 10px 22px;
-      border-radius: 25px;
-      cursor: pointer;
+    .buy-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
     }
+    .buy-buttons a {
+      padding: 10px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #fff;
+    }
+    .buy-buttons .shopee { background: #ee4d2d; }
+    .buy-buttons .lazada { background: #0f136d; }
+    .buy-buttons a:hover { opacity: 0.85; }
     .product-info button:hover { background: #d4af37; color: #111; }
 
     /* ABOUT */
@@ -165,33 +186,16 @@
     <h3>Our Best Sellers</h3>
   </div>
 
-  <div class="products">
-    <div class="product">
-      <img src="https://images.unsplash.com/photo-1615634262414-9bbec8b7f4a5" alt="Perfume">
-      <div class="product-info">
-        <h4>Rose Elegance</h4>
-        <p class="price">₱1,499</p>
-        <button>Add to Cart</button>
-      </div>
-    </div>
+  <div class="products" id="productGrid"></div>
+</section>
 
-    <div class="product">
-      <img src="https://images.unsplash.com/photo-1617957743082-0e0b4b28e1f4" alt="Perfume">
-      <div class="product-info">
-        <h4>Midnight Oud</h4>
-        <p class="price">₱1,899</p>
-        <button>Add to Cart</button>
-      </div>
-    </div>
-
-    <div class="product">
-      <img src="https://images.unsplash.com/photo-1585386959984-a4155222f6e7" alt="Perfume">
-      <div class="product-info">
-        <h4>Citrus Bloom</h4>
-        <p class="price">₱1,299</p>
-        <button>Add to Cart</button>
-      </div>
-    </div>
+<!-- FILTERS -->
+<section style="padding-top:20px">
+  <div style="text-align:center; margin-bottom:30px;">
+    <button class="filter-btn" data-category="All">All</button>
+    <button class="filter-btn" data-category="Men">Men</button>
+    <button class="filter-btn" data-category="Women">Women</button>
+    <button class="filter-btn" data-category="Unisex">Unisex</button>
   </div>
 </section>
 
@@ -215,5 +219,55 @@
   <p>© 2025 Luxury Scents. All Rights Reserved.</p>
 </footer>
 
+<script>
+// SAMPLE CSV FORMAT:
+// name,price,category,image,shopee,lazada
+
+const csvUrl = 'YOUR_CSV_LINK_HERE';
+let allProducts = [];
+
+fetch(csvUrl)
+  .then(res => res.text())
+  .then(text => {
+    const rows = text.split('
+').slice(1);
+    allProducts = rows.map(r => {
+      const [name,price,category,image,shopee,lazada] = r.split(',');
+      return {name,price,category,image,shopee,lazada};
+    });
+    renderProducts('All');
+  });
+
+function renderProducts(category){
+  const grid = document.getElementById('productGrid');
+  grid.innerHTML = '';
+
+  allProducts.filter(p => category==='All' || p.category===category)
+  .forEach(p => {
+    grid.innerHTML += `
+    <div class="product">
+      <img src="${p.image}" alt="${p.name}">
+      <div class="product-info">
+        <h4>${p.name}</h4>
+        <p class="price">${p.price}</p>
+        <div class="buy-buttons">
+          <a href="${p.shopee}" target="_blank" class="shopee">Shopee</a>
+          <a href="${p.lazada}" target="_blank" class="lazada">Lazada</a>
+        </div>
+      </div>
+    </div>`;
+  });
+}
+
+// FILTER BUTTONS
+const btns = document.querySelectorAll('.filter-btn');
+btns.forEach(btn=>{
+  btn.onclick = ()=>{
+    btns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProducts(btn.dataset.category);
+  }
+});
+</script>
 </body>
 </html>
