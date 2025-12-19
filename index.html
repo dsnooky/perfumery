@@ -1,96 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luxury Scent | Perfume Shop</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luxury Scents | Perfume Shop</title>
 
   <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fafafa;
+      color: #333;
+    }
+
+    /* HEADER */
+    header {
+      background: #111;
+      color: #fff;
+      padding: 15px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+    }
+    nav a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav a:hover { color: #d4af37; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
+      url('https://images.unsplash.com/photo-1523293836414-f04e712e1c65') center/cover no-repeat;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 20px;
+    }
+    .hero h2 { font-size: 3rem; margin-bottom: 15px; }
+    .hero p { font-size: 1.1rem; margin-bottom: 25px; }
+    .btn {
+      background: #d4af37;
+      color: #111;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* PRODUCTS */
+    section {
+      padding: 70px 8%;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .section-title h3 {
+      font-size: 2.2rem;
+      color: #111;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .product {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform .3s;
+    }
+    .product:hover { transform: translateY(-8px); }
+    .product img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+    .product-info {
+      padding: 20px;
+      text-align: center;
+    }
+    .product-info h4 { font-size: 1.1rem; margin-bottom: 8px; }
+    .price { color: #d4af37; font-weight: 600; margin-bottom: 15px; }
+    .product-info button {
+      background: #111;
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+    .product-info button:hover { background: #d4af37; color: #111; }
+
+    /* ABOUT */
+    .about {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      align-items: center;
+    }
+    .about img {
+      width: 100%;
+      border-radius: 20px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111;
+      color: #ccc;
+      text-align: center;
+      padding: 30px 15px;
+      font-size: .9rem;
+    }
+    footer i { color: #d4af37; margin: 0 8px; }
+
+    /* RESPONSIVE */
+    @media(max-width:768px) {
+      .hero h2 { font-size: 2.2rem; }
+      header { flex-direction: column; }
+      nav { margin-top: 10px; }
+    }
+  </style>
 </head>
 <body>
 
 <header>
+  <h1>Luxury Scents</h1>
   <nav>
-    <h1>Luxury Scent</h1>
-    <div>
-      <a href="index.html">Products</a>
-      <a href="about.html">About</a>
-      <a href="more.html">More</a>
-    </div>
+    <a href="#home">Home</a>
+    <a href="#shop">Shop</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
-<section class="hero">
-  <h2>Discover Your Signature Scent</h2>
-  <p>Luxury perfumes crafted for elegance & confidence</p>
-</section>
-
-<section class="container">
-  <div class="products">
-
-    <!-- PRODUCT 1 -->
-    <div class="card">
-      <img src="images/perfume1.jpg" alt="Rose Noir">
-      <h3>Rose Noir</h3>
-      <p>Floral & romantic</p>
-      <div class="price">₱1,299</div>
-      <a href="#" class="btn">Buy Now</a>
-    </div>
-
-    <!-- PRODUCT 2 -->
-    <div class="card">
-      <img src="images/perfume2.jpg" alt="Amber Oud">
-      <h3>Amber Oud</h3>
-      <p>Warm & seductive</p>
-      <div class="price">₱1,499</div>
-      <a href="#" class="btn">Buy Now</a>
-    </div>
-
-    <!-- PRODUCT 3 -->
-    <div class="card">
-      <img src="images/perfume3.jpg" alt="Ocean Mist">
-      <h3>Ocean Mist</h3>
-      <p>Fresh & clean</p>
-      <div class="price">₱1,199</div>
-      <a href="#" class="btn">Buy Now</a>
-    </div>
-
-    <!-- PRODUCT 4 -->
-    <div class="card">
-      <img src="images/perfume4.jpg" alt="Vanilla Luxe">
-      <h3>Vanilla Luxe</h3>
-      <p>Sweet & comforting</p>
-      <div class="price">₱1,099</div>
-      <a href="#" class="btn">Buy Now</a>
-    </div>
-
-    <!-- PRODUCT 5 -->
-    <div class="card">
-      <img src="images/perfume5.jpg" alt="Midnight Musk">
-      <h3>Midnight Musk</h3>
-      <p>Bold & mysterious</p>
-      <div class="price">₱1,599</div>
-      <a href="#" class="btn">Buy Now</a>
-    </div>
-
-    <!-- PRODUCT 6 -->
-    <div class="card">
-      <img src="images/perfume6.jpg" alt="Citrus Bloom">
-      <h3>Citrus Bloom</h3>
-      <p>Bright & energetic</p>
-      <div class="price">₱999</div>
-      <a href="#" class="btn">Buy Now</a>
-    </div>
-
+<section class="hero" id="home">
+  <div>
+    <h2>Discover Your Signature Scent</h2>
+    <p>Premium perfumes crafted for elegance and confidence</p>
+    <a href="#shop" class="btn">Shop Now</a>
   </div>
 </section>
 
-<footer>
-  © 2025 Luxury Scent. All rights reserved.
+<section id="shop">
+  <div class="section-title">
+    <h3>Our Best Sellers</h3>
+  </div>
+
+  <div class="products">
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1615634262414-9bbec8b7f4a5" alt="Perfume">
+      <div class="product-info">
+        <h4>Rose Elegance</h4>
+        <p class="price">₱1,499</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1617957743082-0e0b4b28e1f4" alt="Perfume">
+      <div class="product-info">
+        <h4>Midnight Oud</h4>
+        <p class="price">₱1,899</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1585386959984-a4155222f6e7" alt="Perfume">
+      <div class="product-info">
+        <h4>Citrus Bloom</h4>
+        <p class="price">₱1,299</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about">
+    <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6" alt="Perfume Brand">
+    <div>
+      <h3>About Luxury Scents</h3>
+      <p>Luxury Scents offers carefully curated perfumes made from premium ingredients. Each fragrance is designed to elevate your personality and leave a lasting impression.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <p>Follow us</p>
+  <p>
+    <i class="fab fa-facebook"></i>
+    <i class="fab fa-instagram"></i>
+    <i class="fab fa-tiktok"></i>
+  </p>
+  <p>© 2025 Luxury Scents. All Rights Reserved.</p>
 </footer>
 
 </body>
